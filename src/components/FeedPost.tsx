@@ -219,14 +219,18 @@ async function main() {
 }
 
 type Props = {
+  
   publication: ExplorePublicationsQuery["explorePublications"]["items"][0];
 };
-const [openComment, setOpenComment] = useState(false);
-const [comment, setComment] = useState('');
-main();
+
+
 
 export default function FeedPost({ publication }: Props) {
+
+  const [openComment, setOpenComment] = useState(false);
+  const [comment, setComment] = useState('');
   console.log(publication);
+  main();
 
   const handleComment = () => {
     setComment('');
