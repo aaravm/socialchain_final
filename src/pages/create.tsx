@@ -4,6 +4,9 @@ import { LENS_CONTRACT_ABI, LENS_CONTRACT_ADDRESS } from "../const/contracts";
 import { useCreatePost } from "../lib/useCreatePost";
 import styles from "../styles/Create.module.css";
 
+
+
+
 export default function Create() {
   const [image, setImage] = useState<File | null>(null);
   const [title, setTitle] = useState<string>("");

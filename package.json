@@ -36,6 +36,7 @@
     "@graphql-codegen/typescript": "^2.8.5",
     "@graphql-codegen/typescript-operations": "^2.5.10",
     "@graphql-codegen/typescript-react-query": "^4.0.6",
+    "@types/node-fetch": "^2.6.11",
     "@types/omit-deep": "^0.3.0",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
