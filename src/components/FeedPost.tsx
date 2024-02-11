@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { ExplorePublicationsQuery } from "../graphql/generated";
 import styles from "../styles/FeedPost.module.css";
+import { BiCommentDetail, BiLike } from "react-icons/bi";
 
 type Props = {
   publication: ExplorePublicationsQuery["explorePublications"]["items"][0];
@@ -13,32 +14,39 @@ export default function FeedPost({ publication }: Props) {
 
   return (
     <div className={styles.feedPostContainer}>
-      <div className={styles.feedPostHeader}>
+      <div className="w-full flex justify-start items-center gap-2">
         {/* Author Profile picture */}
-        <MediaRenderer
-          // @ts-ignore
-          src={publication?.profile?.picture?.original?.url || ""}
-          alt={publication.profile.name || publication.profile.handle}
-          className={styles.feedPostProfilePicture}
-        />
-
-        {/* Author profile Name */}
-        <Link
-          href={`/profile/${publication.profile.handle}`}
-          className={styles.feedPostProfileName}
-        >
-          {publication.profile.name || publication.profile.handle}
+        <Link href={`/profile/${publication.profile.handle}`}>
+          <MediaRenderer
+            // @ts-ignore
+            src={publication?.profile?.picture?.original?.url || ""}
+            alt={publication.profile.name || publication.profile.handle}
+            className={styles.feedPostProfilePicture}
+          />
         </Link>
+
+        <div className="flex flex-col justify-center items-start text-start">
+
+          {/* Author profile Name */}
+          <Link
+            href={`/profile/${publication.profile.handle}`}
+            className="border-b border-gray-600"
+          >
+            {publication.profile.name || publication.profile.handle}
+          </Link>
+
+          <div className="text-xs text-gray-300 flex justify-start items-center">{publication.profile?.bio}</div>
+        </div>
       </div>
 
-      <div className={styles.feedPostContent}>
+      <div className="flex flex-col justify-start items-start gap-2 w-full">
         {/* Name of the post */}
-        <h3 className={styles.feedPostContentTitle}>
+        <h2 className="text-start text-2xl font-semibold">
           {publication.metadata.name}
-        </h3>
+        </h2>
 
         {/* Description of the post */}
-        <p className={styles.feedPostContentDescription}>
+        <p className="text-start">
           {publication.metadata.content}
         </p>
 
@@ -57,10 +65,9 @@ export default function FeedPost({ publication }: Props) {
 
       </div>
 
-      <div className={styles.feedPostFooter}>
-        <p>{publication.stats.totalAmountOfCollects} Collects</p>
-        <p>{publication.stats.totalAmountOfComments} Comments</p>
-        <p>{publication.stats.totalAmountOfMirrors} Mirrors</p>
+      <div className="w-full flex justify-center items-center gap-5 p-2 bg-white bg-opacity-[25%] rounded">
+        <p className="flex justify-center items-center gap-1"><p>{publication.stats.totalAmountOfCollects}</p> <p className="text-sm">Collects</p> <p><BiLike/></p></p>
+        <p className="flex justify-center items-center gap-1"><p>{publication.stats.totalAmountOfComments}</p> <p className="text-sm">Comments </p> <p><BiCommentDetail /></p></p>
       </div>
     </div>
   );

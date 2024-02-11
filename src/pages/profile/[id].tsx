@@ -56,13 +56,13 @@ export default function ProfilePage({}: Props) {
   if (loadingProfile) {
     return <div>Loading profile...</div>;
   }
-
+  console.log(profileData, "profile")
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileContentContainer}>
         {/* Cover Image */}
         {/* @ts-ignore */}
-        {profileData?.profile?.coverPicture?.original?.url && (
+        {profileData?.profile?.coverPicture?.original?.url && ( 
           <MediaRenderer
             // @ts-ignore
             src={profileData?.profile?.coverPicture?.original?.url || ""}
@@ -107,7 +107,7 @@ export default function ProfilePage({}: Props) {
           Follow User
         </Web3Button>
 
-        <div className={styles.publicationsContainer}>
+        <div className="w-full flex flex-col justify-center items-center m-5">
           {isLoadingPublications ? (
             <div>Loading Publications...</div>
           ) : (
